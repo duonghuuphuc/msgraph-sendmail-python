@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from 'bootstrap4/form.html' import render_form %}
+
+{% block head %}
+    {{super()}}
+{% endblock %}
+
+{% block title %}Send Mail{% endblock %}
+
+{% block page_content %}
+    <a href="{{ url_for('index') }}">Home</a> | <a href="javascript:window.history.go(-1)">Back</a>
+    <h1>Microsoft Graph - Send Mail API</h1>
+    <h4 style="margin-top: 15px;">Send Mail</h4>
+
+    <p style="margin-top: 50px; margin-bottom: 25px; font-weight: bold;">From: <span class="text-primary">{{ from_email }}</span></p>
+    {{ render_form(form) }}
+
+{% endblock %}
+
+{% block footer_content %}
+    Powered by MSAL Python {{ version }}
+{% endblock %}

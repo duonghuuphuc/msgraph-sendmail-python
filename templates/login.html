@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{super()}}
+{% endblock %}
+
+{% block title %}Login (Authentication){% endblock %}
+
+{% block page_content %}
+    <a href="{{ url_for('index') }}">Home</a> | <a href="javascript:window.history.go(-1)">Back</a>
+    <h1>Microsoft Graph - Send Mail API</h1>
+    <h4 style="margin-top: 15px;">Authentication</h4>
+
+    <p style="margin-top: 50px; font-weight: bold;">Function:</p>
+    <ul>
+        <li><a href='{{ auth_url }}'>Sign in / Reauthenticate another account</a></li>
+        {% if session.get("user"): %}
+            <li><a href='{{ url_for("logout") }}'>Sign out</a></li>
+        {% endif %}
+
+        {% if config.get("B2C_RESET_PASSWORD_AUTHORITY") %}
+            <li><a href='{{_build_auth_code_flow(authority=config["B2C_RESET_PASSWORD_AUTHORITY"])["auth_uri"]}}'>Reset Password</a></li>
+        {% endif %}
+    </ul>
+{% endblock %}
+
+{% block footer_content %}
+    Powered by MSAL Python {{ version }}
+{% endblock %}

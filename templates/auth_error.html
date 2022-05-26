@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{super()}}
+    {% if config.get("B2C_RESET_PASSWORD_AUTHORITY") and "AADB2C90118" in result.get("error_description") %}
+      <!-- See also https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-reference-policies#linking-user-flows -->
+      <meta http-equiv="refresh" content='0;{{_build_auth_code_flow(authority=config["B2C_RESET_PASSWORD_AUTHORITY"])["auth_uri"]}}'>
+    {% endif %}
+{% endblock %}
+
+{% block title %}Login Failure{% endblock %}
+
+{% block page_content %}
+    <a href="{{ url_for('index') }}">Home</a> | <a href="javascript:window.history.go(-1)">Back</a>
+    <h1>Microsoft Graph - Send Mail API</h1>
+    <h4 style="font-style: italic; margin-top: 15px;">Login Failure</h4>
+
+    <dl>
+      <dt>{{ result.get("error") }}</dt>
+      <dd>{{ result.get("error_description") }}</dd>
+    </dl>
+    <hr>
+    <a href="{{ url_for('index') }}">Homepage</a>
+{% endblock %}
+
+{% block footer_content %}
+    Powered by MSAL Python.
+{% endblock %}

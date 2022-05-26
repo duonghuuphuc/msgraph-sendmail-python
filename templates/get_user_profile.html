@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{super()}}
+{% endblock %}
+
+{% block title %}Get: User Profile{% endblock %}
+
+{% block page_content %}
+    <a href="{{ url_for('index') }}">Home</a> | <a href="javascript:window.history.go(-1)">Back</a>
+    <h1>Microsoft Graph - Send Mail API</h1>
+    <h4 style="font-style: italic; margin-top: 15px;">Get: User Profile</h4>
+
+    <p style="margin-top: 50px; font-weight: bold;">Content in JSON format:</p>
+    <p style='margin-bottom: 50px; word-wrap: break-word; font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'>
+        {{ user_profile }}
+    </p>
+{% endblock %}
+
+{% block footer_content %}
+    Powered by MSAL Python {{ version }}
+{% endblock %}

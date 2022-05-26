@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{super()}}
+{% endblock %}
+
+{% block title %}Graph API Call Result{% endblock %}
+
+{% block page_content %}
+    <a href="{{ url_for('index') }}">Home</a> | <a href="javascript:window.history.go(-1)">Back</a>
+    <h1>Microsoft Graph - Send Mail API</h1>
+    <h4 style="font-style: italic; margin-top: 15px;">Graph API Call Result</h4>
+
+    <p style="margin-top: 50px; font-weight: bold;">Result in JSON format:</p>
+    <pre>
+        {{ result |tojson(indent=4) }}
+    </pre>
+{% endblock %}
+
+{% block footer_content %}
+    Powered by MSAL Python {{ version }}
+{% endblock %}

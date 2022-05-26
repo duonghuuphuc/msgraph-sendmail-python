@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{super()}}
+{% endblock %}
+
+{% block title %}Get: Access Token{% endblock %}
+
+{% block page_content %}
+    <a href="{{ url_for('index') }}">Home</a> | <a href="javascript:window.history.go(-1)">Back</a>
+    <h1>Microsoft Graph - Send Mail API</h1>
+    <h4 style="font-style: italic; margin-top: 15px;">Get: Access Token</h4>
+
+    <p style="margin-top: 50px; font-weight: bold;">Token type:</p>
+    <p style='word-wrap: break-word; font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'>
+        {{ token_type }}
+    </p>
+
+    <p style="margin-top: 25px; font-weight: bold;">Expires in:</p>
+    <p style='word-wrap: break-word; font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'>
+        {{ expires_in }}
+    </p>
+
+    <p style="margin-top: 25px;"><span style="font-weight: bold;">Access token:</span> (Parse the token on <a href="https://jwt.ms/" target="_blank">jwt.ms</a>)</p>
+    <p style='word-wrap: break-word; font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'>
+        {{ access_token }}
+    </p>
+
+    <p style="margin-top: 25px; font-weight: bold;">Raw Access Token:</p>
+    <p style='margin-bottom: 50px; word-wrap: break-word; font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'>
+        {{ raw_access_token }}
+    </p>
+{% endblock %}
+
+{% block footer_content %}
+    Powered by MSAL Python {{ version }}
+{% endblock %}

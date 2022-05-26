@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{super()}}
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block page_content %}
+    <h1>Microsoft Graph - Send Mail API</h1>
+    <h4 style="margin-top: 15px;">Welcome <span class="font-italic">{{ user.get("name") }}</span> (<span class="text-primary">{{ user.get("preferred_username") }}</span>)</h4>
+
+    <p style="margin-top: 50px; font-weight: bold;">Functions:</p>
+    <ul>
+        {% if config.get("ENDPOINT") %}
+            <li><a href='{{ url_for("login") }}'>Reauthenticate another account</a></li>
+            <li><a href='{{ url_for("get_user_profile") }}'>Get current user profile</a></li>
+            <li><a href='{{ url_for("send_mail") }}'>SendMail API</a></li>
+            <li><a href='{{ url_for("graphcall") }}'>Call Microsoft Graph API</a></li>
+            <li><a href='{{ url_for("get_access_token") }}'>Print "Access Token"</a></li>
+        {% endif %}
+
+        {% if config.get("B2C_PROFILE_AUTHORITY") %}
+            <li><a href='{{ _build_auth_code_flow(authority=config["B2C_PROFILE_AUTHORITY"])["auth_uri"] }}'>Edit Profile</a></li>
+        {% endif %}
+
+        <li><a href='{{ url_for("logout") }}'>Logout</a></li>
+    </ul>
+{% endblock %}
+
+{% block footer_content %}
+    Powered by MSAL Python {{ version }}
+{% endblock %}
